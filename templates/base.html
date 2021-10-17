@@ -5,27 +5,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Shohqadam | Blog</title>
     <link rel="stylesheet" href="{% static 'style/style.css' %}">
 </head>
 <body>
     <header>
-        <h1><a href="{%url 'home'%}">SHOHQADAM BLOG</a></h1>
+        <div class="container">
+            <div class="logo">
+                <h1><a href="{%url 'home'%}">SHOHQADAM BLOG</a></h1>
+            </div>
+           
+            <div class="header__actions">
+                {% if user.is_authenticated %}
+                <!-- <p>Xush kelibsiz {{user.username}}</p> -->
+                <p><a href="{% url 'logout'  %}">LogOut</a></p>
+                <h2><a href="{% url 'new_post' %}">New</a></h2>
+                {%else%}
+                <a href="{% url 'login' %}">SignIn</a>
+                <a href="{% url 'signup' %}">SignUp</a>
+                {% endif %}
+            </div>
+        </div>
 
       
-    </header>
-    {% if user.is_authenticated %}
-            <p>Xush kelibsiz {{user.username}}</p>
-            <p><a href="{% url 'logout'  %}">LOG Out</a></p>
-            {%else%}
-            <a href="{% url 'login' %}">Saytga kirish</a>
-            <a href="{% url 'signup' %}">Sign Up</a>
-    {% endif %}
-    
-    <div>
-        {% block content %}
-        {% endblock content %}
+   
+
+</header>
+  
+    <div class="main">
+        <div class="container">
+            {% block content %}
+            {% endblock content %}
+        </div>
     </div>
-    <h2><a href="{% url 'new_post' %}">Yangi Post Yozish</a></h2>
+   
 </body>
 </html>
