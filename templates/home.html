@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for post in object_list %}
+    <main class="page-content">
+        <div class="card">
+          <div class="content">
+            <h2 class="title"><a href="{% url 'post_detail' post.pk %}">{{post.title}}</a></h2>
+            <p class="copy">{{post.summary}}</p>
+            <button class="btn"><a href="{% url 'post_detail' post.pk %}">Read More...</a></button>
+          </div>
+        </div>
+      </main>
+    {% endfor %}
+{% endblock content %}
+
+
+
+
+

@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="{% static 'style/style.css' %}"> -->
+</head>
+<body>
+    <header>
+        <h1><a href="{%url 'home'%}">SHOHQADAM BLOG</a></h1>
+
+      
+    </header>
+    {% if user.is_authenticated %}
+            <p>Xush kelibsiz {{user.username}}</p>
+            <p><a href="{% url 'logout'  %}">LOG Out</a></p>
+            {%else%}
+            <a href="{% url 'login' %}">Saytga kirish</a>
+            <a href="{% url 'signup' %}">Sign Up</a>
+    {% endif %}
+    
+    <div>
+        {% block content %}
+        {% endblock content %}
+    </div>
+    <h2><a href="{% url 'new_post' %}">Yangi Post Yozish</a></h2>
+</body>
+</html>
